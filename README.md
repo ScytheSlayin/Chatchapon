@@ -1,11 +1,11 @@
 <h1 align="center">Cuphead: The CSCI 41 Remake</h1>
 
 <p align="center">
-  <i>A Java networked bullet-hell project inspired by classic arcade boss fights.</i>
+  <i>A Java networked bullet-hell project inspired by Cuphead.</i>
 </p>
 
 <p align="center">
-  <strong>Educational project only — please do not copyright strike us 😭</strong>
+  <strong>pls do not copyright strike us 😭</strong>
 </p>
 
 <hr>
