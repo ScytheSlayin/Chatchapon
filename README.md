@@ -21,11 +21,11 @@
   </tr>
   <tr>
     <td>Networked game with a server and client that can connect from different locations</td>
-    <td>✅ Complete</td>
+    <td>X</td>
   </tr>
   <tr>
     <td>Bullet hell genre with many real-time projectiles on screen</td>
-    <td>✅ Complete</td>
+    <td>X</td>
   </tr>
   <tr>
     <td>Gachapon mechanic with loot boxes and random powerups of different rarities</td>
@@ -33,7 +33,7 @@
   </tr>
   <tr>
     <td>Multiplayer support with in-game text chat</td>
-    <td>✅ Complete</td>
+    <td>X</td>
   </tr>
 </table>
 
