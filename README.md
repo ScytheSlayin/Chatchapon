@@ -43,6 +43,7 @@
 
 <ul>
   <li>Loot System with RNG for Powerups </li>
+  <li>A multiplayer chat, requires a server client to be running, then you would run two game clients or more. </li>
 
 </ul>
 
