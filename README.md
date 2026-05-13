@@ -44,7 +44,8 @@
 <ul>
   <li>Loot System with RNG for Powerups </li>
   <li>A multiplayer chat, requires a server client to be running, then you would run two game clients or more. </li>
-
+  <li>Use of both TCP and UDP packets (TCP for chat)
+  <li>Server client that also receives chats
 </ul>
 
 <hr>
