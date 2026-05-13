@@ -38,7 +38,7 @@
 </table>
 
 
-h3>Sean</h3>
+<h3>Sean</h3>
 
 <table>
   <tr>
@@ -47,11 +47,11 @@ h3>Sean</h3>
   </tr>
   <tr>
     <td>Networked game with a server and client that can connect from different locations</td>
-    <td>X</td>
+    <td>Done</td>
   </tr>
   <tr>
     <td>Bullet hell genre with many real-time projectiles on screen</td>
-    <td>X</td>
+    <td> 🚧 Work in Progress</td>
   </tr>
   <tr>
     <td>Gachapon mechanic with loot boxes and random powerups of different rarities</td>
