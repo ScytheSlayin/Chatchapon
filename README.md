@@ -33,7 +33,7 @@
   </tr>
   <tr>
     <td>Multiplayer support with in-game text chat</td>
-    <td>🚧 Work in Progress</td>
+    <td>Done
   </tr>
 </table>
 
