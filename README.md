@@ -37,6 +37,32 @@
   </tr>
 </table>
 
+
+h3>Sean</h3>
+
+<table>
+  <tr>
+    <th>Requirement</th>
+    <th>Status</th>
+  </tr>
+  <tr>
+    <td>Networked game with a server and client that can connect from different locations</td>
+    <td>X</td>
+  </tr>
+  <tr>
+    <td>Bullet hell genre with many real-time projectiles on screen</td>
+    <td>X</td>
+  </tr>
+  <tr>
+    <td>Gachapon mechanic with loot boxes and random powerups of different rarities</td>
+    <td>🚧 Work in Progress</td>
+  </tr>
+  <tr>
+    <td>Multiplayer support with in-game text chat</td>
+    <td>Done
+  </tr>
+</table>
+
 <hr>
 
 <h2>Current Features</h2>
