@@ -109,6 +109,24 @@ public class NewMenu extends JPanel implements KeyListener {
 	}
 
 public void drawControls(Graphics menu){
+	menu.SetColor(Color.WHITE);
+	menu.setFont(new Font("Serif", Font.BOLD, 50));
+	menu.drawString("Controls", 340, 100);
+
+	menu.setFont(new Font("Arial", Font.PLAIN, 26));
+
+
+	// conbtrols
+	menu.drawString("WASD - Movement", 250, 190);
+	menu.drawString("X - Spin cases", 250, 240);
+	menu.drawString("I - Use powerup", 250, 290);
+	menu.drawString("T - Open chat", 250, 390);
+	menu.drawString("ENTER - Select", 250, 390);
+	menu.drawString("ESC - Back",250,440);
+
+	menu.setColor(Color.LIGHT_GRAY);
+	menu.setFont(new Font ("Arial", Font.PLAIN, 18));
+	menu.drawString("Press ESC to go back", 360, 560);
 }
 public void keyPressed(KeyEvent e){
 
