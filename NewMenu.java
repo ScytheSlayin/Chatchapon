@@ -8,6 +8,37 @@ public class NewMenu extends JPanel implements KeyListener {
 
 	int selected = 0;
 
+
+	String screen = "MENU"; // starting pos
+
+
+	// case sysmte -- add as sprites if have 22:36
+
+	String[] spinItems = {
+		"COMMON - Faster Speed",
+		"COMMON - Faster Speed",
+		"COMMON - Faster Speed",
+		"RARE - More Health",
+		"RARE - More Health",
+		"EPIC - Sheild",
+		"LEGENDARY - Second Life"
+	};
+
+	String spinText = "Press X to roll a case, may the RNG help you";
+
+	boolean isSpin = false;
+
+	int spinCount = 0;
+
+	Timer spinTimer;
+
+	Random rand = new Random();
+
+	ArrayList<String> inv = new ArrayList<String>();
+
+	String currentPower = "None";
+
+
 	public NewMenu(){
 		setPreferredSize(new Dimension(900, 650));
 		setBackground(Color.BLACK);
@@ -18,7 +49,7 @@ public class NewMenu extends JPanel implements KeyListener {
 
 	// https://docs.oracle.com/javase/8/docs/api/java/awt/Window.html
 
-
+	
 	public void paintComponent(Graphics menu){
 		super.paintComponent(menu);
 		// https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/java/awt/Color.html
@@ -27,9 +58,24 @@ public class NewMenu extends JPanel implements KeyListener {
 		menu.setColor(new Color(20, 20, 30));
 		menu.fillRect(0,0, getWidth(), getHeight());
 
+		if(screen.equals("MENU")){
+			drawMenu(menu);
+		}
+		if(screen.equals("CONTROLS")){
+			drawControls(menu);
+		}
+		if(screen.equals("SHOP")){
+			drawShop(menu);
+		}
+		if(screen.equals("FIGHT")){
+			drawFight(menu);
+		}
+	}
+
 		// title or splash screen
 		// https://docs.oracle.com/javase/8/docs/api/java/awt/Font.html
 
+	public void drawMenu(Graphics menu){
 		menu.setColor(Color.WHITE);
 		menu.setFont(new Font("Serif", Font.BOLD, 55));
 		menu.drawString("Cuphead 41", 315, 120);
@@ -62,7 +108,8 @@ public class NewMenu extends JPanel implements KeyListener {
 		menu.drawString("W/S | ENTER to select", 225, 560);
 	}
 
-
+public void drawControls(Graphics menu){
+}
 public void keyPressed(KeyEvent e){
 
 	// https://docs.oracle.com/javase/8/docs/api/java/awt/event/KeyEvent.html
