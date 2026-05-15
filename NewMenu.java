@@ -109,7 +109,7 @@ public class NewMenu extends JPanel implements KeyListener {
 	}
 
 public void drawControls(Graphics menu){
-	menu.SetColor(Color.WHITE);
+	menu.setColor(Color.WHITE);
 	menu.setFont(new Font("Serif", Font.BOLD, 50));
 	menu.drawString("Controls", 340, 100);
 
@@ -130,7 +130,7 @@ public void drawControls(Graphics menu){
 }
 
 public void drawShop(Graphics menu){
-	menu.setColor(color.WHITE);
+	menu.setColor(Color.WHITE);
 	menu.setFont(new Font("Serif", Font.BOLD, 45));
 	menu.drawString("Gatchapon Case Shop", 285, 80);
 
@@ -148,7 +148,7 @@ public void drawShop(Graphics menu){
 	else if(spinText.contains("EPIC")){
 		menu.setColor(new Color(160,50,255)); // purp
 	}
-	else if(spinText.contains("LEGENDARY)){
+	else if(spinText.contains("LEGENDARY")){
 		menu.setColor(Color.ORANGE);
 	}
 	else{
@@ -179,7 +179,7 @@ public void drawShop(Graphics menu){
 				inventory += ", "; // tuff
 				}
 		}
-		menu.drawString(inv, 220, 520);
+		menu.drawString(inventory, 220, 520);
 	}
 }
 
@@ -200,7 +200,7 @@ public void startSpin(){
 
 		spinText = spinItems[randomIndex];
 
-		spin count++;
+		spinCount++;
 
 		if(spinCount >= 35){ // give item after n spinItems
 
@@ -248,7 +248,7 @@ public void usePower(){
 	currentPower = inv.get(0);
 
 	inv.remove(0);
-}_ 
+}
 public void keyPressed(KeyEvent e){
 
 	// https://docs.oracle.com/javase/8/docs/api/java/awt/event/KeyEvent.html
@@ -293,7 +293,7 @@ public void keyPressed(KeyEvent e){
 	}
 
 	else if(screen.equals("SHOP")){
-		if(key == KeyEvent.VK_x){
+		if(key == KeyEvent.VK_X){
 			startSpin();
 		}
 	}
