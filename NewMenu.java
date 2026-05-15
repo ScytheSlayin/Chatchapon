@@ -278,9 +278,20 @@ public void keyPressed(KeyEvent e){
 
 		if(options[selected].equals("FIGHT")){
 			// enter later
-			System.out.println("start");
-			screen = "FIGHT";
+			JFrame gameWindow = new JFrame("Cuphead 41 Fight");
+
+			GameScreen game = new GameScreen(currentPower);
+
+			gameWindow.add(game);
+			gameWindow.pack();
+
+			gameWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			gameWindow.setLocationRelativeTo(null);
+			gameWindow.setVisible(true);
+
+			game.requestFocusInWindow();
 		}
+		
 		if(options[selected].equals("SHOP")){
 			System.out.println("shoppin");
 			screen = "SHOP";

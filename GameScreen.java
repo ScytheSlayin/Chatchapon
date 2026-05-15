@@ -76,6 +76,9 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 		setFocusable(true);
 		addKeyListener(this);
 
+
+		requestFocus();
+
 		timer = new Timer(16, this); // like 60 FPS
 		timer.start();
 	}
@@ -302,7 +305,7 @@ public void updateAnimation() {
 // install endgame
 public void paintComponent(Graphics game) {
 	super.paintComponent(game);
-	// draw backgroundgame.drawImage(background, 0, 0, 900, 650, null);
+	game.drawImage(background, 0, 0, 900, 650, null);
 	if (gameOver == true) {
 		drawEnding(game);
 		// make love ending things
@@ -446,6 +449,9 @@ public static void main(String[] args) {
 	// debug purpose to spawn with powerups
 	// GameScreen game = new GameScreen("LEGENDARY - Second Life");
 
+
+	GameScreen game = new GameScreen("None");
+
 	window.add(game);
 	window.pack();
 
@@ -453,7 +459,7 @@ public static void main(String[] args) {
 	window.setLocationRelativeTo(null);
 	window.setVisible(true);
 
-	game.requestFocusInWindow();
+	game.requestFocus();
 }
 }
 
