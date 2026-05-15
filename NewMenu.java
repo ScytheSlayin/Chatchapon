@@ -130,6 +130,57 @@ public void drawControls(Graphics menu){
 }
 
 public void drawShop(Graphics menu){
+	menu.setColor(color.WHITE);
+	menu.setFont(new Font("Serif", Font.BOLD, 45));
+	menu.drawString("Gatchapon Case Shop", 285, 80);
+
+	// case boxes
+	menu.setColor(Color.WHITE);
+	menu.drawRoundRect(200, 130, 500, 250, 30, 30); //no idea if this is a proper rectangle fix later
+
+	// spin logic
+	if(spinText.contains("COMMON")){
+		menu.setColor(Color.GRAY);
+	}
+	else if (spinText.contains("RARE")){
+		menu.setColor(Color.BLUE);
+	}
+	else if(spinText.contains("EPIC")){
+		menu.setColor(new Color(160,50,255)); // purp
+	}
+	else if(spinText.contains("LEGENDARY)){
+		menu.setColor(Color.ORANGE);
+	}
+	else{
+		menu.setColor(Color.WHITE);
+	}
+
+	menu.setFont(new Font("Arial", Font.BOLD, 28));
+	menu.drawString(spinText, 245, 260);
+
+	menu.setColor(Color.LIGHT_GRAY);
+	menu.setFont(new Font("Arial", Font.BOLD, 22));
+	menu.drawString("Inventory:", 100, 520);
+
+	menu.setFont(new Font("Arial", Font.PLAIN, 18));
+
+	if(inv.size() == 0){
+		menu.drawString("Empty", 220, 520);
+	}
+
+	else{
+
+		String inventory = ""; // base
+
+		for(int i = 0; i < inv.size(); i++){
+			inventory += inv.get(i);
+
+			if( i < inv.size() -1){
+				inventory += ", "; // tuff
+				}
+		}
+		menu.drawString(inv, 220, 520);
+	}
 }
 public void keyPressed(KeyEvent e){
 
