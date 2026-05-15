@@ -25,11 +25,11 @@
   </tr>
   <tr>
     <td>Bullet hell genre with many real-time projectiles on screen</td>
-    <td>X</td>
+    <td>Finsihed<td>
   </tr>
   <tr>
     <td>Gachapon mechanic with loot boxes and random powerups of different rarities</td>
-    <td>🚧 Work in Progress</td>
+    <td>Finished</td>
   </tr>
   <tr>
     <td>Multiplayer support with in-game text chat</td>
