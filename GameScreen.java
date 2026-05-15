@@ -4,7 +4,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class GameScren extends JPanel implements KeyListener, ActionListener{
+public class GameScreen extends JPanel implements KeyListener, ActionListener {
 
 	// https://docs.oracle.com/javase/8/docs/api/java/awt/event/KeyListener.html
 	// https://docs.oracle.com/javase/8/docs/api/java/awt/event/ActionListener.html
@@ -23,8 +23,8 @@ public class GameScren extends JPanel implements KeyListener, ActionListener{
 
 	// player spawn and declerations
 
-	int PlayerX = 120;
-	int PlayerY = 430;
+	int playerX = 120;
+	int playerY = 430;
 
 	int playerHealth = 100;
 	int playerSpeed = 5;
@@ -47,10 +47,10 @@ public class GameScren extends JPanel implements KeyListener, ActionListener{
 
 	// powerups if applicable
 
-	String power = "None";
+	String powerup = "None";
 
-	boolean hasSecond = false;
-	boolean hasSheild = false;
+	boolean secondLife = false;
+	boolean sheild = false;
 
 
 	// bullet sprites
@@ -90,7 +90,7 @@ public class GameScren extends JPanel implements KeyListener, ActionListener{
 	}
 
 	if (powerup.contains("Sheild")) {
-		shield = true;
+		sheild = true;
 	}
 
 	if (powerup.contains("Second Life")) {
@@ -154,14 +154,14 @@ if (playerY > 570) {
 
 public void updateBoss() {
 
-	bossY += bossDirection * 3;
+	bossY += bossDir * 3;
 
 	if (bossY < 80) {
-		bossDirection = 1;
+		bossDir = 1;
 	}
 
 	if (bossY > 390) {
-		bossDirection = -1;
+		bossDir = -1;
 	}
 }
 
@@ -304,14 +304,14 @@ public void paintComponent(Graphics game) {
 	super.paintComponent(game);
 	// draw backgroundgame.drawImage(background, 0, 0, 900, 650, null);
 	if (gameOver == true) {
-		drawEnding(g);
+		drawEnding(game);
 		// make love ending things
 		return;
 	}
-	drawPlayer(g);
-	drawBoss(g);
-	drawBullets(g);
-	drawUI(g);
+	drawPlayer(game);
+	drawBoss(game);
+	drawBullets(game);
+	drawUI(game);
 }
 public void drawPlayer(Graphics game) {
 	if (pFrame == 0) {
@@ -337,7 +337,8 @@ public void drawBullets(Graphics game) {
 		}
 		else if (b.type.equals("TOP")) {
 			game.drawImage(topBulletSprite, b.x, b.y, 35, 35, null);
-			game.setColor(Color.ORANGE); // holder since Image}
+			game.setColor(Color.ORANGE); // holder since Image
+		}
 		else {
 			game.drawImage(groundBulletSprite, b.x, b.y, 35, 35, null);
 			game.setColor(Color.PINK);
