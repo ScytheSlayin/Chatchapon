@@ -358,8 +358,8 @@ public void drawBullets(Graphics game) {
 public void drawUI(Graphics game) {
 	game.setColor(Color.WHITE);
 	game.setFont(new Font("Arial", Font.BOLD, 18));
-	game.drawString("Player Health: " + playerHealth, 20, 30);
-	game.drawString("Boss Health: " + bossHealth, 650, 30);
+	game.drawString("Player's  Health: " + playerHealth, 20, 30);
+	game.drawString("Dice's  Health: " + bossHealth, 650, 30);
 	game.drawString("Powerup: " + powerup, 20, 60);
 	game.drawString("WASD = move | SPACE = shoot | ESC = quit", 270, 620);
 }
