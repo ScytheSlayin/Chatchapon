@@ -1,49 +1,41 @@
-<h1 align="center">Cuphead: The CSCI 41 Remake</h1>
+# Cuphead 41
 
-<p align="center">
-  <i>A Java networked bullet-hell project inspired by Cuphead.</i>
-</p>
+A Java bullet-hell game inspired by Cuphead, created for CSCI 41.  
+Off branch cuphead
 
-<p align="center">
-  <strong>pls do not copyright strike us 😭</strong>
-</p>
+---
 
-<hr>
+# Controls
+- `W A S D` → Move
+- `Space` → Aim / Shoot
+- `T` → Open chat
+- `ESC` → Pause / Quit
 
-<h2>Project Requirements / To-Do</h2>
+---
 
-<h3>Dhillon</h3>
+## Gameplay Features
+- Bullet-hell combat
+- Boss fights with attack patterns
+- Loot box / gachapon system
+- Random rarity powerups
+- Multiplayer support
+- In-game text chat
 
-<table>
-  <tr>
-    <th>Requirement</th>
-    <th>Status</th>
-  </tr>
-  <tr>
-    <td>Networked game with a server and client that can connect from different locations</td>
-    <td>X</td>
-  </tr>
-  <tr>
-    <td>Bullet hell genre with many real-time projectiles on screen</td>
-    <td>Finsihed<td>
-  </tr>
-  <tr>
-    <td>Gachapon mechanic with loot boxes and random powerups of different rarities</td>
-    <td>Finished</td>
-  </tr>
-  <tr>
-    <td>Multiplayer support with in-game text chat</td>
-    <td>X</td>
-  </tr>
-</table>
+---
 
-<hr>
+## Dhillon
+- Bullet-hell gameplay ✅
+- Boss fights and projectile systems ✅
+- Loot box / gachapon system ✅
+- Random rarity powerups ✅
+- Main gameplay systems ✅
 
-<h2>Current Features</h2>
+---
 
-<ul>
-  <li>Loot System with RNG for Powerups </li>
+## Sean
+- Multiplayer networking ✅
+- Server/client communication ✅
+- In-game text chat ✅
 
-</ul>
+---
 
-<hr>
