@@ -66,9 +66,9 @@ public class GameScren extends JPanel implements KeyListener, ActionListener{
 	boolean gameOver = false;
 	boolean playerWon = false;
 
-	public GameScreen(String powerupFromMenu) {
+	public GameScreen(String powerupFromSpinny) {
 
-		powerup = powerupFromMenu;
+		powerup = powerupFromSpinny;
 
 		applyPowerup();
 
@@ -79,7 +79,7 @@ public class GameScren extends JPanel implements KeyListener, ActionListener{
 		timer = new Timer(16, this); // like 60 FPS
 		timer.start();
 	}
- void applyPowerup() {
+ public void applyPowerup() {
 
 	if (powerup.contains("Faster Speed")) {
 		playerSpeed = 8;
@@ -104,7 +104,7 @@ public void actionPerformed(ActionEvent e) {
 
 		updatePlayer();
 		updateBoss();
-		spawnEnemyBullets();
+		spawnBossesBullets();
 		updateBullets();
 		isColliding();
 		updateAnimation();
@@ -148,4 +148,154 @@ if (playerY > 570) {
 }
 }
 
+
+// boss spawn and directions
+
+
+public void updateBoss() {
+
+	bossY += bossDirection * 3;
+
+	if (bossY < 80) {
+		bossDirection = 1;
+	}
+
+	if (bossY > 390) {
+		bossDirection = -1;
+	}
+}
+
+public void spawnBossesBullets() {
+
+	frameCount++;
+
+	// boss shoots lef
+	if (frameCount % 35 == 0) {
+	enemyBullets.add(new Bullet(bossX, bossY + 80, -7, 0, "BOSS"));
+	}
+
+// bullets from topbulle
+if (frameCount % 45 == 0) {
+int randomX = rand.nextInt(850);
+enemyBullets.add(new Bullet(randomX, 0, 0, 6, "TOP"));
+}
+
+// bullets coming up from ground like cuphead
+
+if (frameCount % 70 == 0) {
+	int randomX = rand.nextInt(850);
+	enemyBullets.add(new Bullet(randomX, 650, 0, -7, "GROUND"));
+}
+}
+
+public void updateBullets() {
+
+	// enemy bullets
+	for (int i = 0; i < enemyBullets.size(); i++) {
+
+		Bullet b = enemyBullets.get(i);
+
+		b.x += b.dx;
+		b.y += b.dy;
+
+		if (b.x < -50 || b.x > 950 || b.y < -50 || b.y > 700) {
+			enemyBullets.remove(i);
+			i--;
+		}
+	}
+
+	// player bullets
+	for (int i = 0; i < playerBullets.size(); i++) {
+
+		Bullet b = playerBullets.get(i);
+
+		b.x += b.dx;
+		b.y += b.dy;
+
+		if (b.x > 950) {
+			playerBullets.remove(i);
+			i--;
+		}
+	}
+}
+
+public void isColliding() {
+
+	Rectangle playerB = new Rectangle(playerX, playerY, 55, 70);
+	Rectangle bossB= new Rectangle(bossX, bossY, 160, 170);
+
+	// enemy bullet hits playerY
+	for (int i = 0; i < enemyBullets.size(); i++) {
+
+		Bullet b = enemyBullets.get(i);
+
+		Rectangle bulletBox = new Rectangle(b.x, b.y, 30, 30);
+
+		if (playerB.intersects(bulletBox)) {
+
+			enemyBullets.remove(i);
+			i--;
+
+			if (sheild == true) {
+				sheild = false;
+			}
+			else {
+				playerHealth -= 15;
+			}
+
+			if (playerHealth <= 0) {
+
+				if (secondLife == true) {
+					secondLife = false;
+					playerHealth = 75;
+				}
+				else {
+					gameOver = true;
+					playerWon = false;
+				}
+			}
+		}
+	}
+
+	// player bullet hits bossss
+	for (int i = 0; i < playerBullets.size(); i++) {
+
+		Bullet b = playerBullets.get(i);
+
+		Rectangle bulletBox = new Rectangle(b.x, b.y, 25, 15);
+
+		if (bossB.intersects(bulletBox)) {
+
+			playerBullets.remove(i);
+			i--;
+
+			bossHealth -= 10;
+
+			if (bossHealth <= 0) {
+				gameOver = true;
+				playerWon = true;
+			}
+		}
+	}
+}
+
+public void updateAnimation() {
+
+	if (frameCount % 20 == 0) {
+
+		if (pFrame == 0) {
+			pFrame = 1;
+		}
+		else {
+			pFrame = 0;
+		}
+
+		if (bFrame == 0) {
+			bFrame = 1;
+		}
+		else {
+			bFrame = 0;
+		}
+	}
+}
 
