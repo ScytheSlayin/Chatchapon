@@ -9,5 +9,7 @@ server: build
 client: build
 	java NewMenu
 
+run: client
+
 clean: 
 	rm -f *.class
