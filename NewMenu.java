@@ -218,6 +218,37 @@ public void startSpin(){
 	});
 	spinTimer.start();
 }
+
+public String rollFinalPower(){
+
+
+	// delays overflow
+	int roll = rand.nextInt(100);
+
+	if(roll < 5){
+		return "LEGENDARY - Second Life";
+	}
+	else if( roll < 20){
+		return "EPIC - Sheild";
+	}
+	else if(roll < 45){
+		return "RARE - More Health";
+	}
+	else{
+		return "COMMON - Faster Speed";
+	}
+}
+
+public void usePower(){
+	if(inv.size() == 0){
+		currentPower = "None";
+		return;
+	}
+
+	currentPower = inv.get(0);
+
+	inv.remove(0);
+}_ 
 public void keyPressed(KeyEvent e){
 
 	// https://docs.oracle.com/javase/8/docs/api/java/awt/event/KeyEvent.html
@@ -246,18 +277,43 @@ public void keyPressed(KeyEvent e){
 		if(options[selected].equals("FIGHT")){
 			// enter later
 			System.out.println("start");
+			screen = "FIGHT";
 		}
 		if(options[selected].equals("SHOP")){
 			System.out.println("shoppin");
+			screen = "SHOP";
 		}
 		if(options[selected].equals("CONTROLS")){
 			System.out.println("cont");
+			screen = "CONTROLS";
 		}
 		if(options[selected].equals("QUIT")){
 			System.exit(0);
 		}
 	}
 
+	else if(screen.equals("SHOP")){
+		if(key == KeyEvent.VK_x){
+			startSpin();
+		}
+	}
+	else if (screen.equals("CONTROLS")){
+		if(key == KeyEvent.VK_ESCAPE){
+			screen = "MENU";
+		}
+	}
+
+	else if(screen.equals("FIGHT")){
+
+		if(key == KeyEvent.VK_I){
+			usePower();
+		}
+
+		if(key == KeyEvent.VK_ESCAPE){
+			screen = "MENU";
+		}
+	}
+		
 	repaint();
 }
 
