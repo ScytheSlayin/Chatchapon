@@ -182,6 +182,42 @@ public void drawShop(Graphics menu){
 		menu.drawString(inv, 220, 520);
 	}
 }
+
+public void drawFight(Graphics menu){
+	menu.setColor(Color.WHITE);
+}
+// https://docs.oracle.com/javase/tutorial/uiswing/events/actionlistener.html
+public void startSpin(){
+	if(isSpin == true){
+		return;
+	}
+
+	isSpin = true;
+	spinCount = 0;
+
+	spinTimer = new Timer(80, e -> {
+		int randomIndex = rand.nextInt(spinItems.length);
+
+		spinText = spinItems[randomIndex];
+
+		spin count++;
+
+		if(spinCount >= 35){ // give item after n spinItems
+
+			spinTimer.stop();
+
+			isSpin = false;
+
+			String finalItem = rollFinalPower();
+
+			spinText = "You Got: " + finalItem + "!";
+
+			inv.add(finalItem);
+		}
+		repaint();
+	});
+	spinTimer.start();
+}
 public void keyPressed(KeyEvent e){
 
 	// https://docs.oracle.com/javase/8/docs/api/java/awt/event/KeyEvent.html
