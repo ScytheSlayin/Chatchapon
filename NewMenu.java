@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Random;
+import java.util.ArrayList;
 
 public class NewMenu extends JPanel implements KeyListener {
 
@@ -295,6 +297,9 @@ public void keyPressed(KeyEvent e){
 	else if(screen.equals("SHOP")){
 		if(key == KeyEvent.VK_X){
 			startSpin();
+		}
+		if(key == KeyEvent.VK_ESCAPE){
+			screen = "MENU";
 		}
 	}
 	else if (screen.equals("CONTROLS")){
