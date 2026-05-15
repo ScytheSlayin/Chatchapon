@@ -1,8 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
-import java awt.event.*;
+import java.awt.event.*;
 import java.util.ArrayList;
-import java util.Random;
+import java.util.Random;
 
 public class GameScren extends JPanel implements KeyListener, ActionListener{
 
@@ -19,7 +19,7 @@ public class GameScren extends JPanel implements KeyListener, ActionListener{
 	Image bossBulletSprite = new ImageIcon("bossbullet.png").getImage();
 	Image topBulletSprite = new ImageIcon("topbullet.png").getImage();
 	Image groundBulletSprite = new ImageIcon("groundbullet.png").getImage();
-
+	Image playerBulletSprite = new ImageIcon("playerbullet.png").getImage();
 
 	// player spawn and declerations
 
@@ -344,8 +344,7 @@ public void drawBullets(Graphics game) {
 		}
 	}
 	for (Bullet b : playerBullets) {
-		game.setColor(Color.YELLOW);
-		game.fillOval(b.x, b.y, 20, 12);
+		game.drawImage(playerBulletSprite, b.x, b.y, 35, 25, null);
 	}
 }
 public void drawUI(Graphics game) {
@@ -382,4 +381,100 @@ public void drawEnding(Graphics game) {
 }
 
 
+public void keyPressed(KeyEvent e) {
+
+	int key = e.getKeyCode();
+
+	// backend controls
+
+	if (key == KeyEvent.VK_W || key == KeyEvent.VK_UP) {
+		up = true;
+	}
+
+	if (key == KeyEvent.VK_S || key == KeyEvent.VK_DOWN) {
+		down = true;
+	}
+
+	if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {
+		left = true;
+	}
+
+	if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) {
+		right = true;
+	}
+
+
+	// spawn bullet in front of player
+	if (key == KeyEvent.VK_SPACE) {
+	playerBullets.add(new Bullet(playerX + 65, playerY + 35, 10, 0, "PLAYER"));
+	}
+
+if (key == KeyEvent.VK_ESCAPE) {
+	System.exit(0);
+}
+}
+
+public void keyReleased(KeyEvent e) {
+
+	int key = e.getKeyCode();
+
+	if (key == KeyEvent.VK_W || key == KeyEvent.VK_UP) {
+		up = false;
+	}
+
+	if (key == KeyEvent.VK_S || key == KeyEvent.VK_DOWN) {
+		down = false;
+	}
+	
+	if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {
+		left = false;
+	}
+
+	if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) {
+		right = false;
+	}
+}
+
+public void keyTyped(KeyEvent e) {
+}
+
+public static void main(String[] args) {
+
+	JFrame window = new JFrame("Cuphead 41 Fight");
+
+	// debug purpose to spawn with powerups
+	// GameScreen game = new GameScreen("LEGENDARY - Second Life");
+
+	window.add(game);
+	window.pack();
+
+	window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	window.setLocationRelativeTo(null);
+	window.setVisible(true);
+
+	game.requestFocusInWindow();
+}
+}
+
+class Bullet {
+
+	int x;
+	int y;
+
+	int dx;
+	int dy;
+
+	String type;
+
+	public Bullet(int x, int y, int dx, int dy, String type) {
+
+		this.x = x;
+		this.y = y;
+
+		this.dx = dx;
+		this.dy = dy;
+
+		this.type = type;
+	}
+} 
 
