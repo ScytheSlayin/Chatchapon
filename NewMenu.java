@@ -26,7 +26,7 @@ public class NewMenu extends JPanel implements KeyListener {
 		"LEGENDARY - Second Life"
 	};
 
-	String spinText = "Press X to roll a case, may the RNG help you";
+	String spinText = "Press X to roll a case";
 
 	boolean isSpin = false;
 
@@ -122,7 +122,7 @@ public void drawControls(Graphics menu){
 	menu.drawString("WASD - Movement", 250, 190);
 	menu.drawString("X - Spin cases", 250, 240);
 	menu.drawString("I - Use powerup", 250, 290);
-	menu.drawString("T - Open chat", 250, 390);
+	menu.drawString("T - Open chat", 250, 340);
 	menu.drawString("ENTER - Select", 250, 390);
 	menu.drawString("ESC - Back",250,440);
 
@@ -162,7 +162,7 @@ public void drawShop(Graphics menu){
 
 	menu.setColor(Color.LIGHT_GRAY);
 	menu.setFont(new Font("Arial", Font.BOLD, 22));
-	menu.drawString("Inventory:", 100, 520);
+	menu.drawString("Inventory:      ", 100, 520);
 
 	menu.setFont(new Font("Arial", Font.PLAIN, 18));
 
@@ -212,7 +212,7 @@ public void startSpin(){
 
 			String finalItem = rollFinalPower();
 
-			spinText = "You Got: " + finalItem + "!";
+			spinText = "Got: " + finalItem + "!";
 
 			inv.add(finalItem);
 		}
