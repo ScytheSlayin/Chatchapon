@@ -128,6 +128,9 @@ public void drawControls(Graphics menu){
 	menu.setFont(new Font ("Arial", Font.PLAIN, 18));
 	menu.drawString("Press ESC to go back", 360, 560);
 }
+
+public void drawShop(Graphics menu){
+}
 public void keyPressed(KeyEvent e){
 
 	// https://docs.oracle.com/javase/8/docs/api/java/awt/event/KeyEvent.html
