@@ -3,6 +3,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.Random;
 import java.util.ArrayList;
+import java.io.*;
+import java.net.*;
 
 public class NewMenu extends JPanel implements KeyListener {
 
@@ -40,15 +42,56 @@ public class NewMenu extends JPanel implements KeyListener {
 
 	String currentPower = "None";
 
+	// Online variables
+
+	public static ArrayList<String> chatLog = new ArrayList<>();
+	private Socket socket;
+	private PrintWriter out;
+	private BufferedReader in;
+
 
 	public NewMenu(){
 		setPreferredSize(new Dimension(900, 650));
 		setBackground(Color.BLACK);
 		setFocusable(true);
 		addKeyListener(this);
+
 	}
+	
+	public void promptAndConnect() {
+		String username = JOptionPane.showInputDialog(this, "Enter your username:");
+		if (username == null || username.trim().isEmpty()) {
+			username = "Guest" + rand.nextInt(1000);
+		}
+		connectToServer(username);
+	}
+	public void connectToServer(String username) {
+		try {
+			socket = new Socket("localhost", 12345);
+			out = new PrintWriter(socket.getOutputStream(), true);
+			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
+			out.println(username);
 
+			new Thread(() -> {
+				try {
+					String line;
+					while ((line = in.readLine()) != null) {
+						chatLog.add(line);
+						if (chatLog.size() > 5) {
+							chatLog.remove(0);
+						}
+						repaint();
+					}
+				} catch (IOException e) {
+					chatLog.add("Disconnected from server.");
+					repaint();
+				}
+			}).start();
+		} catch (IOException e) {
+			chatLog.add("Could not connect to server.");
+		}
+	}
 	// https://docs.oracle.com/javase/8/docs/api/java/awt/Window.html
 
 	
@@ -72,6 +115,10 @@ public class NewMenu extends JPanel implements KeyListener {
 		if(screen.equals("FIGHT")){
 			drawFight(menu);
 		}
+
+		// Drawing chat on top
+		drawChat(menu);
+
 	}
 
 		// title or splash screen
@@ -188,6 +235,15 @@ public void drawShop(Graphics menu){
 public void drawFight(Graphics menu){
 	menu.setColor(Color.WHITE);
 }
+
+public void drawChat(Graphics menu){
+	menu.setColor(Color.WHITE);
+	menu.setFont(new Font("Arial", Font.PLAIN, 16));
+	for (int i = 0; i < chatLog.size(); i++) {
+		menu.drawString(chatLog.get(i), 20, 530 + (i * 20));
+	}
+}
+
 // https://docs.oracle.com/javase/tutorial/uiswing/events/actionlistener.html
 public void startSpin(){
 	if(isSpin == true){
@@ -256,6 +312,14 @@ public void keyPressed(KeyEvent e){
 	// https://docs.oracle.com/javase/8/docs/api/java/awt/event/KeyEvent.html
 
 	int key = e.getKeyCode();
+	
+	//chat in menu 
+	if(key == KeyEvent.VK_T) {
+		String msg = JOptionPane.showInputDialog(this, "Enter chat message:");
+		if (msg != null && !msg.trim().isEmpty() && out != null) {
+			out.println("MSG:" + msg);
+		}
+	}
 
 	if(key == KeyEvent.VK_W || key == KeyEvent.VK_UP){
 
@@ -280,7 +344,7 @@ public void keyPressed(KeyEvent e){
 			// enter later
 			JFrame gameWindow = new JFrame("Cuphead 41 Fight");
 
-			GameScreen game = new GameScreen(currentPower);
+			GameScreen game = new GameScreen(currentPower, out);
 
 			gameWindow.add(game);
 			gameWindow.pack();
@@ -342,7 +406,7 @@ public void keyTyped(KeyEvent e){
 }
 
 public static void main(String[] args){
-
+SwingUtilities.invokeLater(() -> {
 	JFrame window = new JFrame("Cuphead 41");
 
 
@@ -356,5 +420,8 @@ public static void main(String[] args){
 	window.setVisible(true);
 
 	menuadd.requestFocusInWindow();
+
+	menuadd.promptAndConnect();
+});
 }
 }

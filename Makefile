@@ -1,6 +1,13 @@
-run:
-	javac *.java
+all: build
+
+build: 
+	javac *.java;
+
+server: build 
+	java GameServer
+
+client: build
 	java NewMenu
-	java GameScreen
-clean:
-	rm *.class
+
+clean: 
+	rm -f *.class

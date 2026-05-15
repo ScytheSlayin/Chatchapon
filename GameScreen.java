@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Random;
+import java.io.PrintWriter;
 
 public class GameScreen extends JPanel implements KeyListener, ActionListener {
 
@@ -66,8 +67,11 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 	boolean gameOver = false;
 	boolean playerWon = false;
 
-	public GameScreen(String powerupFromSpinny) {
+	PrintWriter out;
 
+	public GameScreen(String powerupFromSpinny, PrintWriter out) {
+		
+		this.out = out;
 		powerup = powerupFromSpinny;
 
 		applyPowerup();
@@ -413,6 +417,14 @@ public void keyPressed(KeyEvent e) {
 	playerBullets.add(new Bullet(playerX + 65, playerY + 35, 10, 0, "PLAYER"));
 	}
 
+	// chat input 
+	if (key == KeyEvent.VK_T) {
+		String msg = JOptionPane.showInputDialog(this, "Enter chat message:");
+		if (msg != null && !msg.trim().isEmpty() && out != null) {
+			out.println("MSG:" + msg);
+		}
+	}
+
 if (key == KeyEvent.VK_ESCAPE) {
 	System.exit(0);
 }
@@ -450,7 +462,7 @@ public static void main(String[] args) {
 	// GameScreen game = new GameScreen("LEGENDARY - Second Life");
 
 
-	GameScreen game = new GameScreen("None");
+	GameScreen game = new GameScreen("None", null);
 
 	window.add(game);
 	window.pack();
