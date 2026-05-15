@@ -299,3 +299,87 @@ public void updateAnimation() {
 	}
 }
 
+// install endgame
+public void paintComponent(Graphics game) {
+	super.paintComponent(game);
+	// draw backgroundgame.drawImage(background, 0, 0, 900, 650, null);
+	if (gameOver == true) {
+		drawEnding(g);
+		// make love ending things
+		return;
+	}
+	drawPlayer(g);
+	drawBoss(g);
+	drawBullets(g);
+	drawUI(g);
+}
+public void drawPlayer(Graphics game) {
+	if (pFrame == 0) {
+		game.drawImage(playerSprite1, playerX, playerY, 70, 80, null);
+	}
+	else {
+		game.drawImage(playerSprite2, playerX, playerY, 70, 80, null);
+	}
+}
+public void drawBoss(Graphics game) {
+	if (bFrame == 0) {
+		game.drawImage(bossSprite1, bossX, bossY, 170, 180, null);
+	}
+	else {
+		game.drawImage(bossSprite2, bossX, bossY, 170, 180, null);
+	}
+}
+public void drawBullets(Graphics game) {
+	for (Bullet b : enemyBullets) {
+		if (b.type.equals("BOSS")) {
+			game.drawImage(bossBulletSprite, b.x, b.y, 35, 35, null);
+			game.setColor(Color.RED);
+		}
+		else if (b.type.equals("TOP")) {
+			game.drawImage(topBulletSprite, b.x, b.y, 35, 35, null);
+			game.setColor(Color.ORANGE); // holder since Image}
+		else {
+			game.drawImage(groundBulletSprite, b.x, b.y, 35, 35, null);
+			game.setColor(Color.PINK);
+		}
+	}
+	for (Bullet b : playerBullets) {
+		game.setColor(Color.YELLOW);
+		game.fillOval(b.x, b.y, 20, 12);
+	}
+}
+public void drawUI(Graphics game) {
+	game.setColor(Color.WHITE);
+	game.setFont(new Font("Arial", Font.BOLD, 18));
+	game.drawString("Player Health: " + playerHealth, 20, 30);
+	game.drawString("Boss Health: " + bossHealth, 650, 30);
+	game.drawString("Powerup: " + powerup, 20, 60);
+	game.drawString("WASD = move | SPACE = shoot | ESC = quit", 270, 620);
+}
+public void drawEnding(Graphics game) {
+
+	// love ending or sum
+
+	game.setColor(Color.WHITE);
+	game.setFont(new Font("Serif", Font.BOLD, 42));
+	if (playerWon == true) {
+		game.drawString("You Won, But at what cost?", 240, 120);
+		game.setFont(new Font("Arial", Font.PLAIN, 22));
+		game.drawString("After the battle, you asked King Dice on a date.", 190, 220);
+		game.drawString("Since you won, he had no choice but to accept..", 160, 260);
+		game.drawString("He said he thinks your cool, then you guys get married on the spot.", 145, 300);
+		game.drawString("You guys lived happily ever after.", 130, 340);
+	}
+	else {
+		game.drawString("Game Over! Try again!", 350, 120);
+		game.setFont(new Font("Arial", Font.PLAIN, 22));
+		game.drawString("Even after loosing, you asked King Dice on a date.", 255, 230);
+		game.drawString("He laughed at your face", 210, 270);
+		game.drawString("Maybe if you win…", 330, 310);
+	}
+	game.setFont(new Font("Arial", Font.PLAIN, 18));
+	game.drawString("Press ESC to exit.", 375, 560);
+}
+
+
+
